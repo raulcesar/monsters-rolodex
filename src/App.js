@@ -1,14 +1,13 @@
 import { Component } from 'react';
-// import logo from './logo.svg';
 import { CardList } from './components/card-list/card-list';
-import './App.css';
 import axios from 'axios';
 
 class App extends Component {
   constructor () {
     super();
     this.state = {
-      monsters: []
+      monsters: [],
+      searchTerm: ''
     }
   }
   componentDidMount () {
@@ -18,12 +17,19 @@ class App extends Component {
         this.setState({ monsters: persons });
       })
   }
-
+  test(a) {
+    console.log(`a: ${a}`);
+    console.log(`this: ${this.state.searchTerm}`);
+  }
   render () {
     return (
       <div className="App">
-        <CardList monsters={this.state.monsters}>
-        </CardList>
+        <div>
+          hello: {this.state.searchTerm}
+        </div>
+
+        <input onChange={e => this.setState({ searchTerm: e.target.value })} type="search" placeholder="Filter" />
+        <CardList monsters={this.state.monsters} />
       </div>
     );
   }
